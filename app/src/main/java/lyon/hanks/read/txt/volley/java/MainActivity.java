@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     final String[] PERMISSIONS = new String[]{
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.INTERNET,
     };
 
     public static final int REQUEST_CODE = 0; // ???
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG,"path size:"+pathLen);
 
                 if(pathLen>0) {
-                    handler.postDelayed(runnable, 500);
+                    handler.postDelayed(runnable, delayTime);
                 }
             }
         };

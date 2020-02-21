@@ -18,6 +18,8 @@ import java.util.Map;
 
 import lyon.hanks.read.txt.volley.java.MainActivity;
 
+import static lyon.hanks.read.txt.volley.java.MainActivity.fileNameSave;
+
 /**
  * https://blog.csdn.net/nugongahou110/article/details/48154859
  */
@@ -38,7 +40,8 @@ public abstract class FileRead {
     }
 
     private void readFileContent(){
-        File dirFile = new File(path);
+        File dirFile = new File(path+"/"+fileNameSave);
+        Log.d(TAG,"readFileContent :"+dirFile.getPath());
         String fileContent = FileUtil.getFileContent(dirFile);
         theFileContent(fileContent);
     }
