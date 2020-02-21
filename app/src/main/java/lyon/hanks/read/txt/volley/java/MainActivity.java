@@ -156,13 +156,15 @@ public class MainActivity extends AppCompatActivity {
             Log.e(TAG ,"Runnable path:"+path[times]);
             if(path[times]!=null && !path[times].isEmpty()){
                 Log.e(TAG ,"Runnable pathLen:"+pathLen);
-                new VolleyTool(MainActivity.this, path[times]) {
+
+                AppController.getInstance().getVolleyTool().CallPath(path[times]);
+                AppController.getInstance().getVolleyTool().setOnCallPathBackListener(new VolleyTool.OnCallPathBack() {
                     @Override
                     public void Next() {
                         times++;
                         handler.postDelayed(runnable, delayTime);
                     }
-                };
+                });
             }else{
                 times++;
                 Log.e(TAG ,"Runnable pathLen:"+pathLen);

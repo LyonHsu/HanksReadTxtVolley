@@ -17,30 +17,43 @@ import java.util.Map;
 /*
  * https://bng86.gitbooks.io/android-third-party-/content/volley.html
  */
-public abstract class VolleyTool {
+public class VolleyTool {
 
     String TAG = VolleyTool.class.getSimpleName();
     private RequestQueue mQueue;
+    Context context;
+    OnCallPathBack onCallPathBack;
+    public VolleyTool(Context context){
+        this.context = context;
 
-
-    public VolleyTool(Context context,String url){
-
-        Log.d(TAG,"url:"+ url);
         mQueue = Volley.newRequestQueue(context);
+
+    }
+
+    public void CallPath(String url){
+        if(mQueue==null)
+            mQueue = Volley.newRequestQueue(context);
+        Log.d(TAG,"url:"+ url);
         StringRequest mStringRequest = new StringRequest(Request.Method.POST,
                 url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 // response
 //                Log.d(TAG,"Response:"+ response);
-                Next();
+                if(onCallPathBack!=null)
+                {
+                    onCallPathBack.Next();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 // error
                 Log.d(TAG,"Error.Response:"+ error.toString());
-                Next();
+                if(onCallPathBack!=null)
+                {
+                    onCallPathBack.Next();
+                }
             }
         }) {
 
@@ -57,6 +70,11 @@ public abstract class VolleyTool {
 
         mQueue.add(mStringRequest);
     }
+    public static interface OnCallPathBack{
+        void Next();
+    }
 
-    public abstract void Next();
+    public void setOnCallPathBackListener(OnCallPathBack onCallPathBack){
+        this.onCallPathBack=onCallPathBack;
+    }
 }
