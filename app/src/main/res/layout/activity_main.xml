@@ -5,7 +5,10 @@
     android:layout_height="match_parent">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/timeslayout"
+        android:visibility="gone"
+        >
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -13,6 +16,38 @@
             android:text="Hello World!"
            />
     </ScrollView>
+
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_above="@+id/timeslayout"
+        android:listSelector="@drawable/btn_light_blue"
+        android:focusable="true"
+        android:clickable="false"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:id="@+id/timeslayout"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        >
+        <TextView
+
+            android:text="@string/times"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/times"
+            android:layout_alignParentBottom="true"
+            android:text="100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
 
 </RelativeLayout>
