@@ -153,6 +153,20 @@
         
         
         
+//20200221 增加ListView auto selection 
+            
+            adapter = new ArrayAdapter<>(this,R.layout.customizedlistitem,path2);
+            listview = (ListView)findViewById(R.id.listview);
+            listview.setAdapter(adapter);
+            listview.setSelector(R.drawable.btn_light_blue);
+            
+在runnable 時 我們自動切換選擇的item
+         
+            listview.setSelection(times);
+            listview.requestFocusFromTouch();
+            listview.requestFocus();
+            
+當選到item時 可以使用requestFocusFromTouch 來改變被選到的item 背景顏色
         
         
         
